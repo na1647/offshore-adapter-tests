@@ -1,72 +1,99 @@
-Offshore Adapter Tests
-==========================
+# Offshore Adapter Tests
 
-A set of integration tests that can be included in your Offshore Adapter module and used to test
-your adapter against the current Offshore API.
+Integration test suite for Offshore adapters.
 
-[![npm version](https://badge.fury.io/js/offshore-adapter-tests.svg)](https://www.npmjs.com/offshore-adapter-tests)
-[![Build Status](https://travis-ci.org/Atlantis-Software/offshore-adapter-tests.svg?branch=master)](https://travis-ci.org/Atlantis-Software/offshore-adapter-tests)
-[![Coverage Status](https://coveralls.io/repos/github/Atlantis-Software/offshore-adapter-tests/badge.svg?branch=master)](https://coveralls.io/github/Atlantis-Software/offshore-adapter-tests?branch=master)
-[![NSP Status](https://nodesecurity.io/orgs/atlantis/projects/30ec60e6-5fe3-4546-9d4d-52be60ef5fa3/badge)](https://nodesecurity.io/orgs/atlantis/projects/30ec60e6-5fe3-4546-9d4d-52be60ef5fa3)
-[![Dependencies Status](https://david-dm.org/Atlantis-Software/offshore-adapter-tests.svg)](https://david-dm.org/Atlantis-Software/offshore-adapter-tests)
+This package provides a set of integration tests that can be included in an Offshore adapter module to validate adapter compatibility with the Offshore API.
+
+**Current version:** 1.2.0
+
+![npm version](https://badge.fury.io/js/%40na1647%2Foffshore-adapter-tests.svg)
+
+## Project History and Maintainers
+
+This project is derived from the original **offshore-adapter-tests** repository created by **Alexandre Tiertant**.
+
+The original Git history and authorship have been preserved.
+
+Current maintenance and development are handled by **Nicolas A.**
+
+### Original author
+- **lexandre Tiertant**
+- GitHub: @atiertant
+- Original project: Atlantis-Software/offshore-adapter-tests
+Current maintainer
+- **Nicolas A.**
+- GitHub: @na1647
+- Repository: na1647/offshore-adapter-tests
+
+### Current developments
+
+Version 1.2.0 includes:
+
+- Support for database sequences.
+- MariaDB adapter integration test configuration.
+- Updates to the SQL adapter integration test configurations.
+
+## Installation
+
+Install the package using npm:
+
+bash
+npm install --save-dev @na1647/offshore-adapter-tests
 
 ## Adapter Interface Specification
 
+The test suite validates the interfaces implemented by an Offshore adapter.
 
 ## Usage
 
-#### Write a test runner
+### Write a test runner
 
-> i.e. `runner.js`
+For example, create a runner.js file:
 
-```javascript
+javascript
 /**
  * Test runner dependencies
  */
 var mocha = require('mocha');
-var TestRunner = require('offshore-adapter-tests');
-
+var TestRunner = require('@na1647/offshore-adapter-tests');
 
 /**
  * Integration Test Runner
  *
- * Uses the `offshore-adapter-tests` module to
+ * Uses the offshore-adapter-tests module to
  * run mocha tests against the specified interfaces
- * of the currently-implemented Offshore adapter API.
+ * of the currently implemented Offshore adapter API.
  */
 new TestRunner({
 
-	// Load the adapter module.
-	adapter: require('./relative/path/to/your/adapter'),
+    // Load the adapter module.
+    adapter: require('./relative/path/to/your/adapter'),
 
-	// Default adapter config to use.
-	config: {
-		schema: false
-	},
+    // Default adapter configuration.
+    config: {
+        schema: false
+    },
 
-	// The set of adapter interfaces to test against.
-	interfaces: ['semantic', 'queryable']
+    // Interfaces to test.
+    interfaces: ['semantic', 'queryable']
 });
-```
 
-#### Run the tests
+Run the tests
+bash
+node runner.js
 
-```sh
-$ node runner.js
-```
+### Running Tests in a Vagrant VM
 
+Since it is not necessarily desirable to install all supported databases on the local host, a Vagrant configuration for a fully configured virtual machine is provided.
 
-## Running Tests in a Vagrant VM
+To run the tests using this virtual machine, follow the instructions in the Vagrant documentation.
 
-Since it is not necessarily desirable to install all the databases on the local host 
-where this package is tested a [Vagrant](https://www.vagrantup.com) configuration for 
-a fully configured virtual host is provided. To run the tests using this virtual host
-follow [these steps](.puppet/README.md). 
+Using Vagrant is entirely optional. If you prefer to run the tests directly on your host, make sure that the databases required by your tests are installed and configured.
 
-Using Vagrant is entirely optional. If you prefer to just run the test on your host
-directly just ensure the various databases being tested are installed.
+## License
 
-
-## MIT License
+This project is distributed under the MIT License.
 
 See LICENSE.md.
+
+Original copyright and licensing notices are preserved.
