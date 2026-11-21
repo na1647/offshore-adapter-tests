@@ -1,5 +1,8 @@
 var package = require('../../../node_modules/offshore-sql/package.json');
-var _ = require('lodash');
+// NA -> car les séquences ne sont pas gérées par sqlite3
+var features = (package['offshoreAdapter'].features || []).filter(function(feature) {
+  return feature !== 'sequences';;
+});
 module.exports = {
   name: 'offshore-sql (Sqlite3)',
   adapter: require('../../../node_modules/offshore-sql'),

@@ -1,4 +1,10 @@
 var package = require('../../../node_modules/offshore-sql/package.json');
+
+// NA -> car les séquences ne sont pas gérées par mysql
+var features = (package['offshoreAdapter'].features || []).filter(function(feature) {
+  return feature !== 'sequences';;
+});
+
 module.exports = {
   name: 'offshore-sql (Mysql)',
   adapter: require('../../../node_modules/offshore-sql'),

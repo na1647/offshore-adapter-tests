@@ -1,11 +1,15 @@
 var package = require('../../../node_modules/offshore-sql/package.json');
-var features = package['offshoreAdapter'].features;
 
 // Disable sequential auto-increment tests, because postgre does not behave like MySql in this case
 // it does not leave gap in IDs
-if(features.indexOf('autoIncrement.sequential') !== -1) {
-  features.splice(features.indexOf('autoIncrement.sequential'), 1);
-}
+// var features = package['offshoreAdapter'].features;
+// if(features.indexOf('autoIncrement.sequential') !== -1) {
+//   features.splice(features.indexOf('autoIncrement.sequential'), 1);
+// }
+// NA -> Remplacer par filter pour ne pas toucher le tableau initial
+var features = (package['offshoreAdapter'].features || []).filter(function(feature) {
+  return feature !== 'autoIncrement.sequential';
+});
 
 module.exports = {
   name: 'offshore-sql (PostgreSql)',

@@ -1,11 +1,18 @@
 {
   "name": "offshore-adapter-tests",
   "description": "Integration tests for offshore adapters",
-  "version": "1.0.0",
+  "version": "1.2.0",
+  "author": {
+    "name": "Nicolas A.",
+    "email": "na164711@gmail.com",
+    "url": "https://github.com/na1647",
+    "contribution": "Added support for sequences and MariaDB (Ajout gestion des séquences et de mariadb)"
+  },
   "contributors": [
     {
       "name": "Alexandre Tiertant",
-      "github": "https://github.com/atiertant"
+      "url": "https://github.com/atiertant",
+      "description": "Original author of the project"
     }
   ],
   "dependencies": {
@@ -33,8 +40,8 @@
     "adapters",
     "sql"
   ],
-  "repository": "git://github.com/Atlantis-Software/offshore-adapter-tests.git",
-  "homepage": "http://github.com/Atlantis-Software/offshore-adapter-tests",
+  "repository": "git+https://github.com/na1647/offshore-adapter-tests.git",
+  "homepage": "https://github.com/na1647/offshore-adapter-tests",
   "main": "./lib/index.js",
   "scripts": {
     "test": "nyc node test/integration/runnerDispatcher.js",
@@ -48,6 +55,6 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Atlantis-Software/offshore-adapter-tests/issues/new"
+    "url": "https://github.com/na1647/offshore-adapter-tests/issues/new"
   }
 }
